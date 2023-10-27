@@ -120,12 +120,9 @@ default: begin           // the total 3*3//
 endcase
 end 
 
-parameter aba_adder_WIDTH = 12;
+localparam aba_adder_WIDTH = 12;
 wire   [11:0] data_out_r;
 wire   [aba_adder_WIDTH-1:0] mul_out [8:0];
-assign data_out_r  =     (line0_data0*coff_0[0] + line0_data1*coff_0[1] + line0_data2*coff_0[2] 
-                        + line1_data0*coff_1[0] + line1_data1*coff_1[1] + line1_data2*coff_1[2]
-                        + line2_data0*coff_2[0] + line2_data1*coff_2[1] + line2_data2*coff_2[2])>>4;
 
 // store multiply answer in mul_out 
 assign mul_out[0] = line0_data0*coff_0[0];
@@ -190,5 +187,6 @@ aba_adder aba_adder_fourthlayer(
         .cout()
 );
 
+assign data_out    =    data_out >> 4;
 assign data_out    =    data_out_r[DATA_WIDTH-1:0];
 endmodule
