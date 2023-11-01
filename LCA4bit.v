@@ -11,7 +11,7 @@ wire [WIDTH-1:0] P;
 assign c[0] = cin;
 assign cout = c[WIDTH];
 
-genvar i,j;
+genvar i;
 generate 
 for (i=0; i<=WIDTH-1; i=i+1) begin
     assign P[i] = a[i] ^ b[i];
@@ -20,15 +20,14 @@ end
 endgenerate 
 
 
-assign c[1] = G[0] + c[0]&P[0];
-assign c[2] = G[1] + G[0]&P[1] + c[0]&P[1]&P[0];
-assign c[3] = G[2] + G[1]&P[2] + G[0]&P[2]&P[1] + c[0]&P[2]&P[1]&P[0];
-assign c[4] = G[3] + G[2]&P[3] + G[1]&P[3]&P[2] + G[0]&P[3]&P[2]&P[1] + c[0]&P[3]&P[2]&P[1]&P[0]; 
+assign c[1] = G[0] | c[0]&P[0];
+assign c[2] = G[1] | G[0]&P[1] | c[0]&P[1]&P[0];
+assign c[3] = G[2] | G[1]&P[2] | G[0]&P[2]&P[1] | c[0]&P[2]&P[1]&P[0];
+assign c[4] = G[3] | G[2]&P[3] | G[1]&P[3]&P[2] | G[0]&P[3]&P[2]&P[1] | c[0]&P[3]&P[2]&P[1]&P[0]; 
 
-generate 
-for (j=0; j<=WIDTH-1; j=j+1) begin
-    assign s[j] = P[j] ^ c[j+1];
-end
-endgenerate 
+assign s[0] = P[0] ^ c[0];
+assign s[1] = P[1] ^ c[1];
+assign s[2] = P[2] ^ c[2];
+assign s[3] = P[3] ^ c[3];
 
 endmodule
