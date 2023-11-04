@@ -125,15 +125,76 @@ localparam aba_adder_WIDTH = 12;
 wire   [aba_adder_WIDTH-1:0] mul_out [8:0];
 
 // store multiply answer in mul_out 
-assign mul_out[0] = line0_data0*coff_0[0];
-assign mul_out[1] = line0_data1*coff_0[1];
-assign mul_out[2] = line0_data2*coff_0[2];
-assign mul_out[3] = line1_data0*coff_1[0];
-assign mul_out[4] = line1_data1*coff_1[1];
-assign mul_out[5] = line1_data2*coff_1[2];
-assign mul_out[6] = line2_data0*coff_2[0];
-assign mul_out[7] = line2_data1*coff_2[1];
-assign mul_out[8] = line2_data2*coff_2[2];
+
+// assign mul_out[0] = line0_data0*coff_0[0];
+// assign mul_out[1] = line0_data1*coff_0[1];
+// assign mul_out[2] = line0_data2*coff_0[2];
+// assign mul_out[3] = line1_data0*coff_1[0];
+// assign mul_out[4] = line1_data1*coff_1[1];
+// assign mul_out[5] = line1_data2*coff_1[2];
+// assign mul_out[6] = line2_data0*coff_2[0];
+// assign mul_out[7] = line2_data1*coff_2[1];
+// assign mul_out[8] = line2_data2*coff_2[2];
+
+// dadda_tree
+wire [15:0] dadda_result [8:0];
+
+assign mul_out[0] = dadda_result[0][aba_adder_WIDTH-1:0];
+assign mul_out[1] = dadda_result[1][aba_adder_WIDTH-1:0];
+assign mul_out[2] = dadda_result[2][aba_adder_WIDTH-1:0];
+assign mul_out[3] = dadda_result[3][aba_adder_WIDTH-1:0];
+assign mul_out[4] = dadda_result[4][aba_adder_WIDTH-1:0];
+assign mul_out[5] = dadda_result[5][aba_adder_WIDTH-1:0];
+assign mul_out[6] = dadda_result[6][aba_adder_WIDTH-1:0];
+assign mul_out[7] = dadda_result[7][aba_adder_WIDTH-1:0];
+assign mul_out[8] = dadda_result[8][aba_adder_WIDTH-1:0];
+
+dadda_tree dadda_tree_0(
+        .m1(line0_data0),
+        .m2({{0,0,0,0},coff_0[0]}),
+        .dadda_result(dadda_result[0])
+);
+dadda_tree dadda_tree_1(
+        .m1(line0_data1),
+        .m2({{0,0,0,0},coff_0[1]}),
+        .dadda_result(dadda_result[1])
+);
+dadda_tree dadda_tree_2(
+        .m1(line0_data2),
+        .m2({{0,0,0,0},coff_0[2]}),
+        .dadda_result(dadda_result[2])
+);
+dadda_tree dadda_tree_3(
+        .m1(line1_data0),
+        .m2({{0,0,0,0},coff_1[0]}),
+        .dadda_result(dadda_result[3])
+);
+dadda_tree dadda_tree_4(
+        .m1(line1_data1),
+        .m2({{0,0,0,0},coff_1[1]}),
+        .dadda_result(dadda_result[4])
+);
+dadda_tree dadda_tree_5(
+        .m1(line1_data2),
+        .m2({{0,0,0,0},coff_1[2]}),
+        .dadda_result(dadda_result[5])
+);
+dadda_tree dadda_tree_6(
+        .m1(line2_data0),
+        .m2({{0,0,0,0},coff_2[0]}),
+        .dadda_result(dadda_result[6])
+);
+dadda_tree dadda_tree_7(
+        .m1(line2_data1),
+        .m2({{0,0,0,0},coff_2[1]}),
+        .dadda_result(dadda_result[7])
+);
+dadda_tree dadda_tree_8(
+        .m1(line2_data2),
+        .m2({{0,0,0,0},coff_2[2]}),
+        .dadda_result(dadda_result[8])
+);
+
 
 
 wire [aba_adder_WIDTH-1:0] ADD_OUT_firstlayer  [3:0];

@@ -21,11 +21,11 @@
 
 
 module FA(
-input a,
-input b,
-input cin,
-output s,
-output cout
+    input a,
+    input b,
+    input cin,
+    output s,
+    output cout
     );
     wire s0;
     wire ab;

@@ -40,10 +40,10 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 module HA(
-input a,
-input b,
-output s,
-output cout
+    input a,
+    input b,
+    output s,
+    output cout
     );
     //output//
     assign s = a^b;
