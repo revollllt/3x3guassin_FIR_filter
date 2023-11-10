@@ -4,7 +4,7 @@ module matrix_3x3 (
     clk,
     rst_n,
     valid_in,//输入数据有效信号
-    din,//输入的图像数据，将一帧的数据从左到右，然后从上到下依次输�???
+    din,//输入的图像数据，将一帧的数据从左到右，然后从上到下依次输�???
     
     dout_r0,//第一行的输出数据
     dout_r1,//第二行的输出数据
@@ -30,11 +30,11 @@ output[3:0]         corner_type;
 output reg          lastin_flag; // for the last input 0000000 of line0//
 output              out_en; //dout enable//
 
-reg   [WIDTH-1:0] line[2:0];//保存每个line_buffer的输入数�??
+reg   [WIDTH-1:0] line[2:0];//保存每个line_buffer的输入数�??
 reg   valid_in_r  [2:0];
-wire  [WIDTH-1:0] din_r; // 不到�??后一排直接给din，最后一排给0
+wire  [WIDTH-1:0] din_r; // 不到�??后一排直接给din，最后一排给0
 wire  valid_out_r [2:0];
-wire  [WIDTH-1:0] dout_r[2:0];//保存每个line_buffer的输出数�??
+wire  [WIDTH-1:0] dout_r[2:0];//保存每个line_buffer的输出数�??
 reg   corner_flag_lastline; // the last line for output//
 wire  out_en_r [2:0];
 
@@ -57,18 +57,18 @@ generate
                     if (lastin_flag)
                     valid_in_r[i]   <=  1'b1 ;
                     else
-                    valid_in_r[i]   <=  valid_in ;//第一个line_fifo的din和valid_in由顶层直接提�??
+                    valid_in_r[i]   <=  valid_in ;//第一个line_fifo的din和valid_in由顶层直接提�??
                 end
             end
             // line 1 2 ...
         
             else  begin: MAP1
                 always @(*) begin
-                	//将上�???个line_fifo的输出连接到下一个line_fifo的输�??
+                	//将上�???个line_fifo的输出连接到下一个line_fifo的输�??
                     line[i] <= dout_r[i-1];
-                    //当上�??个line_fifo写入480个数据之后拉高rd_en，表示开始读出数据；
+                    //当上�??个line_fifo写入480个数据之后拉高rd_en，表示开始读出数据；
                     //valid_out和rd_en同步，valid_out赋给下一个line_fifo
-                    //valid_in,表示可以�??始写入了
+                    //valid_in,表示可以�??始写入了
                     valid_in_r[i] <= valid_out_r[i-1];
                 end
             end
