@@ -121,7 +121,7 @@ endcase
 end 
 
 wire   [aba_adder_WIDTH+sign_bit-1:0] data_out_r;
-localparam aba_adder_WIDTH = 12;
+localparam aba_adder_WIDTH = 16;
 localparam sign_bit = 1;
 wire   [aba_adder_WIDTH+sign_bit-1:0] mul_out [8:0];
 
@@ -131,15 +131,15 @@ wire   [aba_adder_WIDTH+sign_bit-1:0] mul_out [8:0];
 // dadda_tree
 wire [15:0] dadda_result [8:0];
 
-assign mul_out[0] = (coff_0[0][4]==1) ? ~{1'b0,dadda_result[0][aba_adder_WIDTH-1:0]} + 1'b1 : {1'b0,dadda_result[0][aba_adder_WIDTH-1:0]};
-assign mul_out[1] = (coff_0[1][4]==1) ? ~{1'b0,dadda_result[1][aba_adder_WIDTH-1:0]} + 1'b1 : {1'b0,dadda_result[1][aba_adder_WIDTH-1:0]};
-assign mul_out[2] = (coff_0[2][4]==1) ? ~{1'b0,dadda_result[2][aba_adder_WIDTH-1:0]} + 1'b1 : {1'b0,dadda_result[2][aba_adder_WIDTH-1:0]};
-assign mul_out[3] = (coff_1[0][4]==1) ? ~{1'b0,dadda_result[3][aba_adder_WIDTH-1:0]} + 1'b1 : {1'b0,dadda_result[3][aba_adder_WIDTH-1:0]};
-assign mul_out[4] = (coff_1[1][4]==1) ? ~{1'b0,dadda_result[4][aba_adder_WIDTH-1:0]} + 1'b1 : {1'b0,dadda_result[4][aba_adder_WIDTH-1:0]};
-assign mul_out[5] = (coff_1[2][4]==1) ? ~{1'b0,dadda_result[5][aba_adder_WIDTH-1:0]} + 1'b1 : {1'b0,dadda_result[5][aba_adder_WIDTH-1:0]};
-assign mul_out[6] = (coff_2[0][4]==1) ? ~{1'b0,dadda_result[6][aba_adder_WIDTH-1:0]} + 1'b1 : {1'b0,dadda_result[6][aba_adder_WIDTH-1:0]};
-assign mul_out[7] = (coff_2[1][4]==1) ? ~{1'b0,dadda_result[7][aba_adder_WIDTH-1:0]} + 1'b1 : {1'b0,dadda_result[7][aba_adder_WIDTH-1:0]};
-assign mul_out[8] = (coff_2[2][4]==1) ? ~{1'b0,dadda_result[8][aba_adder_WIDTH-1:0]} + 1'b1 : {1'b0,dadda_result[8][aba_adder_WIDTH-1:0]};
+assign mul_out[0] = (coff_0[0][4]==1) ? ~{1'b0,dadda_result[0]} + 1'b1 : {1'b0,dadda_result[0]};
+assign mul_out[1] = (coff_0[1][4]==1) ? ~{1'b0,dadda_result[1]} + 1'b1 : {1'b0,dadda_result[1]};
+assign mul_out[2] = (coff_0[2][4]==1) ? ~{1'b0,dadda_result[2]} + 1'b1 : {1'b0,dadda_result[2]};
+assign mul_out[3] = (coff_1[0][4]==1) ? ~{1'b0,dadda_result[3]} + 1'b1 : {1'b0,dadda_result[3]};
+assign mul_out[4] = (coff_1[1][4]==1) ? ~{1'b0,dadda_result[4]} + 1'b1 : {1'b0,dadda_result[4]};
+assign mul_out[5] = (coff_1[2][4]==1) ? ~{1'b0,dadda_result[5]} + 1'b1 : {1'b0,dadda_result[5]};
+assign mul_out[6] = (coff_2[0][4]==1) ? ~{1'b0,dadda_result[6]} + 1'b1 : {1'b0,dadda_result[6]};
+assign mul_out[7] = (coff_2[1][4]==1) ? ~{1'b0,dadda_result[7]} + 1'b1 : {1'b0,dadda_result[7]};
+assign mul_out[8] = (coff_2[2][4]==1) ? ~{1'b0,dadda_result[8]} + 1'b1 : {1'b0,dadda_result[8]};
 
 dadda_tree dadda_tree_0(
         .m1(line0_data0),
