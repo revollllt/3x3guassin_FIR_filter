@@ -265,6 +265,6 @@ aba_adder aba_adder_fourthlayer(
 );
 
 wire [aba_adder_WIDTH-1:0] data_out_rb;
-assign data_out_rb  =  (data_out_r[aba_adder_WIDTH+sign_bit-1:0]==1) ? 0 :  data_out_r;
+assign data_out_rb  =  (data_out_r[aba_adder_WIDTH+sign_bit-1]==1) ? 0 :  data_out_r;
 assign data_out     =    data_out_rb[DATA_WIDTH-1:0];
 endmodule
