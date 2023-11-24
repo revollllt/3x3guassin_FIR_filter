@@ -37,10 +37,6 @@ reg [4:0]   coff_2  [2:0];
 // [ 0 4  0]
 // [-1 0 -1]
 
-// [0 -1 -2]
-// [1  0 -1]
-// [2  1  0]
-
 always@(*) begin
 case (corner_type)
 4'd0 :  begin           // initial//
@@ -55,11 +51,11 @@ case (corner_type)
         coff_2[2] <= 0;
         end
 4'd1 :  begin           // start//
-        coff_0[0] <= 0;
-        coff_0[1] <= 1;
+        coff_0[0] <= 5'b10001;
+        coff_0[1] <= 0;
         coff_0[2] <= 0;
-        coff_1[0] <= 5'b10001;
-        coff_1[1] <= 0;
+        coff_1[0] <= 0;
+        coff_1[1] <= 4;
         coff_1[2] <= 0;
         coff_2[0] <= 0;
         coff_2[1] <= 0;
@@ -67,46 +63,46 @@ case (corner_type)
         end
 4'd2 :  begin           // right start//
         coff_0[0] <= 0;
-        coff_0[1] <= 1;
-        coff_0[2] <= 2;
+        coff_0[1] <= 0;
+        coff_0[2] <= 5'b10001;
         coff_1[0] <= 0;
-        coff_1[1] <= 0;
-        coff_1[2] <= 1;
+        coff_1[1] <= 4;
+        coff_1[2] <= 0;
         coff_2[0] <= 0;
         coff_2[1] <= 0;
         coff_2[2] <= 0;
         end
 4'd3 :  begin           // the left beginning//
-        coff_0[0] <= 0;
-        coff_0[1] <= 1;
+        coff_0[0] <= 5'b10001;
+        coff_0[1] <= 0;
         coff_0[2] <= 0;
-        coff_1[0] <= 5'b10001;
-        coff_1[1] <= 0;
+        coff_1[0] <= 0;
+        coff_1[1] <= 4;
         coff_1[2] <= 0;
-        coff_2[0] <= 5'b10010;
-        coff_2[1] <= 5'b10001;
+        coff_2[0] <= 5'b10001;
+        coff_2[1] <= 0;
         coff_2[2] <= 0;
         end
 4'd4 :  begin           // the right boarder//
         coff_0[0] <= 0;
-        coff_0[1] <= 1;
-        coff_0[2] <= 2;
+        coff_0[1] <= 0;
+        coff_0[2] <= 5'b10001;
         coff_1[0] <= 0;
-        coff_1[1] <= 0;
-        coff_1[2] <= 1;
+        coff_1[1] <= 4;
+        coff_1[2] <= 0;
         coff_2[0] <= 0;
-        coff_2[1] <= 5'b10001;
-        coff_2[2] <= 0;
+        coff_2[1] <= 0;
+        coff_2[2] <= 5'b10001;
         end
 4'd5 :  begin           // the leftend//
         coff_0[0] <= 0;
         coff_0[1] <= 0;
         coff_0[2] <= 0;
-        coff_1[0] <= 5'b10001;
-        coff_1[1] <= 0;
+        coff_1[0] <= 0;
+        coff_1[1] <= 4;
         coff_1[2] <= 0;
-        coff_2[0] <= 5'b10010;
-        coff_2[1] <= 5'b10001;
+        coff_2[0] <= 5'b10001;
+        coff_2[1] <= 0;
         coff_2[2] <= 0;
         end
 4'd6 :  begin           // the rigntend//
@@ -114,22 +110,22 @@ case (corner_type)
         coff_0[1] <= 0;
         coff_0[2] <= 0;
         coff_1[0] <= 0;
-        coff_1[1] <= 0;
-        coff_1[2] <= 1;
+        coff_1[1] <= 4;
+        coff_1[2] <= 0;
         coff_2[0] <= 0;
-        coff_2[1] <= 5'b10001;
-        coff_2[2] <= 0;
+        coff_2[1] <= 0;
+        coff_2[2] <= 5'b10001;
         end
 default: begin           // the total 3*3//
-        coff_0[0] <= 0;
-        coff_0[1] <= 1;
-        coff_0[2] <= 2;
-        coff_1[0] <= 5'b10001;
-        coff_1[1] <= 0;
-        coff_1[2] <= 1;
-        coff_2[0] <= 5'b10010;
-        coff_2[1] <= 5'b10001;
-        coff_2[2] <= 0;
+        coff_0[0] <= 5'b10001;
+        coff_0[1] <= 0;
+        coff_0[2] <= 5'b10001;
+        coff_1[0] <= 0;
+        coff_1[1] <= 4;
+        coff_1[2] <= 0;
+        coff_2[0] <= 5'b10001;
+        coff_2[1] <= 0;
+        coff_2[2] <= 5'b10001;
         end
 endcase
 end 
